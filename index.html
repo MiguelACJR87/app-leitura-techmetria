@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#031C4B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Techmetria">
+  <title>Techmetria Leitura</title>
+  
+  <!-- Chama o Manifesto que torna o App Instalável -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/MiguelACJR87/meusassents/main/Tech_Branco-login.png">
+  
+  <style>
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #031C4B; }
+    /* O iframe puxa o seu sistema do Google e exibe em tela cheia */
+    iframe { width: 100vw; height: 100vh; border: none; display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- 👇 O SEU LINK DO GOOGLE SCRIPT ESTÁ AQUI 👇 -->
+  <iframe src="https://script.google.com/macros/s/AKfycby1Y8FWdjRDSj2pC-J-PwD11CHxAyFJP2-f5d-nanWYxCK9kncPUR-RBRoUsXXFN6ZA/exec" allow="camera"></iframe>
+
+  <script>
+    // Inicia o motor do aplicativo
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+  </script>
+</body>
+</html>
