@@ -9,8 +9,25 @@
   <link rel="manifest" href="manifest.json">
   
   <style>
-    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #031C4B; font-family: sans-serif; }
-    iframe { width: 100vw; height: 100vh; border: none; display: block; }
+    body, html { 
+      margin: 0; padding: 0; 
+      width: 100%; height: 100%; 
+      overflow: hidden; /* Trava o fundo cinza para não esticar */
+      background-color: #031C4B; 
+      font-family: sans-serif; 
+      overscroll-behavior: none; /* Mata o pull-to-refresh nativo */
+    }
+    
+    /* 👇 A CORREÇÃO DA ROLAGEM ACONTECE AQUI 👇 */
+    iframe { 
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%; 
+      border: none; 
+      display: block; 
+      overflow-y: auto !important; /* Devolve a permissão de rolar para baixo */
+      -webkit-overflow-scrolling: touch !important; /* Deixa o deslizar fluido e elástico */
+    }
     
     /* A Caixa Mágica de Instalação */
     #install-box {
@@ -32,12 +49,11 @@
 </head>
 <body>
 
-  <!-- O Seu App do Google -->
-  <iframe src="https://script.google.com/macros/s/AKfycby1Y8FWdjRDSj2pC-J-PwD11CHxAyFJP2-f5d-nanWYxCK9kncPUR-RBRoUsXXFN6ZA/exec" allow="camera"></iframe>
+  <!-- O Seu App do Google com a tag scrolling="yes" forçada -->
+  <iframe src="https://script.google.com/macros/s/AKfycby1Y8FWdjRDSj2pC-J-PwD11CHxAyFJP2-f5d-nanWYxCK9kncPUR-RBRoUsXXFN6ZA/exec" allow="camera" scrolling="yes"></iframe>
 
   <!-- CAIXA DE INSTALAÇÃO MANUAL -->
   <div id="install-box">
-    <!-- Se não achar o icon.png, ele usa a logo padrão -->
     <img src="icon.png" onerror="this.src='https://raw.githubusercontent.com/MiguelACJR87/meusassents/main/Tech_Branco-login.png'">
     <div>
       <h4>Techmetria</h4>
@@ -60,18 +76,14 @@
     const installBtn = document.getElementById('install-btn');
 
     window.addEventListener('beforeinstallprompt', (e) => {
-      // Impede o Chrome de tentar mostrar o aviso fraco dele
       e.preventDefault();
-      // Salva o evento nativo
       deferredPrompt = e;
-      // Mostra a nossa caixa forçada
       installBox.style.display = 'flex';
     });
 
     // 3. O que acontece ao clicar no botão "Instalar"
     installBtn.addEventListener('click', async () => {
       installBox.style.display = 'none';
-      // Dispara a janela oficial do Android para baixar o APK
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       deferredPrompt = null;
