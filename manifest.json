@@ -1,22 +1,22 @@
 {
-  "name": "Techmetria - Leitura de Energia",
+  "name": "Techmetria - Leitura",
   "short_name": "Techmetria",
-  "description": "Aplicativo oficial de leitura de campo da Techmetria.",
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#F4F7FB",
+  "background_color": "#031C4B",
   "theme_color": "#031C4B",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "icon.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "icon.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
