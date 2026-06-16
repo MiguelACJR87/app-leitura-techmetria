@@ -1,7 +1,22 @@
+const CACHE_NAME = 'techmetria-v1';
+const ASSETS = ['./index.html', './manifest.json'];
+
 self.addEventListener('install', (e) => {
-  self.skipWaiting();
+  e.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(ASSETS);
+    }).then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (e) => {
+  e.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', (e) => {
-  // Deixa a requisição passar direto para o Google Apps Script
+  e.respondWith(
+    fetch(e.request).catch(() => {
+      return caches.match(e.request);
+    })
+  );
 });
