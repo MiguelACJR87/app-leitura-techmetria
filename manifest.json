@@ -1,10 +1,14 @@
 {
   "name": "Techmetria - Leitura",
   "short_name": "Techmetria",
-  "start_url": "./",
+  "description": "Sistema de leitura de energia para condomínios",
+  "start_url": "https://script.google.com/macros/s/AKfycbw-Dkp6-D6LRRikPuRc0dy3Um5tjH05-X8jcsfQDUFHMtDPDQPLkhCsSUxd5goKTeIz/exec",
+  "scope": "https://script.google.com/macros/s/",
   "display": "standalone",
   "background_color": "#031C4B",
-  "theme_color": "#031C4B",
+  "theme_color": "#1F5FAA",
+  "orientation": "portrait",
+  "categories": ["utilities", "business"],
   "icons": [
     {
       "src": "icon.png",

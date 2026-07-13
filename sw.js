@@ -1,5 +1,5 @@
-const CACHE_NAME = 'techmetria-v2';
-const ASSETS = ['./index.html', './manifest.json'];
+const CACHE_NAME = 'techmetria-github-v1';
+const ASSETS = ['./index.html', './manifest.json', './icon.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
@@ -16,7 +16,10 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   e.respondWith(
     fetch(e.request).catch(() => {
-      return caches.match(e.request);
+      return caches.match(e.request).then(function(cached) {
+        if (cached) return cached;
+        return new Response('', { status: 302, headers: { 'Location': 'https://script.google.com/macros/s/AKfycbw-Dkp6-D6LRRikPuRc0dy3Um5tjH05-X8jcsfQDUFHMtDPDQPLkhCsSUxd5goKTeIz/exec' } });
+      });
     })
   );
 });
